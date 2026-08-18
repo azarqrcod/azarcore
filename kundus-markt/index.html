@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a7b3e">
+  <meta name="description" content="Kundus Markt – Lebensmittel und Haushaltswaren, Groß- & Einzelhandel in Berlin.">
+  <meta property="og:title" content="Kundus Markt Berlin">
+  <meta property="og:description" content="Lebensmittel & Haushaltswaren · Groß- & Einzelhandel">
+  <meta property="og:image" content="https://azarqrcod.github.io/azarcore/kundus-markt/logo.webp">
+  <title>Kundus Markt | Berlin</title>
+  <style>
+    :root {
+      --red: #d51f25;
+      --green: #08783c;
+      --ink: #17191c;
+      --muted: #697178;
+      --line: #e8eaec;
+      --paper: #ffffff;
+      --wash: #f4f6f5;
+    }
+    * { box-sizing: border-box; }
+    html { min-height: 100%; background: var(--wash); }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 0 0, rgba(213,31,37,.10), transparent 34rem),
+        radial-gradient(circle at 100% 100%, rgba(8,120,60,.12), transparent 36rem),
+        var(--wash);
+    }
+    button, a { font: inherit; }
+    .page {
+      width: min(100%, 540px);
+      margin: 0 auto;
+      padding: max(20px, env(safe-area-inset-top)) 16px max(30px, env(safe-area-inset-bottom));
+    }
+    .card {
+      overflow: hidden;
+      background: rgba(255,255,255,.94);
+      border: 1px solid rgba(255,255,255,.9);
+      border-radius: 28px;
+      box-shadow: 0 22px 70px rgba(23,25,28,.13);
+      backdrop-filter: blur(14px);
+    }
+    .flag-line {
+      height: 7px;
+      background: linear-gradient(90deg, #191919 0 33.33%, var(--red) 33.33% 66.66%, var(--green) 66.66% 100%);
+    }
+    .hero { padding: 26px 22px 22px; text-align: center; }
+    .logo-box {
+      display: grid;
+      place-items: center;
+      min-height: 150px;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+    }
+    .logo { display: block; width: 100%; height: auto; }
+    h1 { margin: 22px 0 6px; font-size: clamp(28px, 8vw, 42px); line-height: 1; letter-spacing: -.04em; }
+    .subtitle { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
+    .address {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 16px 0 0;
+      color: var(--ink);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .address svg { flex: 0 0 auto; color: var(--red); }
+    .section { padding: 0 22px 22px; }
+    .label { margin: 0 0 10px; color: var(--muted); font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    .contact-list { display: grid; gap: 10px; }
+    .contact {
+      display: grid;
+      grid-template-columns: 48px minmax(0,1fr) auto;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      color: inherit;
+      text-decoration: none;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      transition: transform .16s ease, border-color .16s ease;
+    }
+    .contact:active { transform: scale(.985); }
+    .avatar {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 900;
+      border-radius: 15px;
+      background: linear-gradient(145deg, var(--red), #a41419);
+    }
+    .contact:nth-child(2) .avatar { background: linear-gradient(145deg, var(--green), #045d2e); }
+    .contact strong, .contact span { display: block; }
+    .contact strong { margin-bottom: 3px; font-size: 16px; }
+    .contact span { color: var(--muted); font-size: 14px; direction: ltr; }
+    .call {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      color: var(--green);
+      background: #eaf6ef;
+      border-radius: 13px;
+    }
+    .actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 52px;
+      padding: 12px;
+      color: var(--ink);
+      font-weight: 800;
+      text-decoration: none;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+    .action.primary { grid-column: 1 / -1; color: #fff; background: var(--green); border-color: var(--green); }
+    .action.instagram { color: #b41b60; }
+    .action.tiktok { color: #101114; }
+    .utility { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 22px 24px; }
+    .utility a, .utility button {
+      min-height: 46px;
+      color: var(--muted);
+      font-weight: 700;
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: grid;
+      place-items: center;
+    }
+    footer { padding: 18px 12px 4px; color: #8a9197; font-size: 12px; text-align: center; }
+    footer b { color: var(--ink); }
+    @media (min-width: 520px) {
+      .page { padding-top: 34px; }
+      .hero, .section { padding-left: 28px; padding-right: 28px; }
+      .utility { padding-left: 28px; padding-right: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <article class="card">
+      <div class="flag-line" aria-hidden="true"></div>
+      <header class="hero">
+        <div class="logo-box"><img class="logo" src="logo.webp" alt="Kundus Markt Logo"></div>
+        <h1>KUNDUS MARKT</h1>
+        <p class="subtitle">Lebensmittel &amp; Haushaltswaren<br>Groß- &amp; Einzelhandel</p>
+        <a class="address" href="https://www.google.com/maps/search/?api=1&amp;query=Am%20Wasserwerk%2026A%2C%2010365%20Berlin" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg>
+          Am Wasserwerk 26A, 10365 Berlin
+        </a>
+      </header>
+
+      <section class="section" aria-labelledby="kontakt">
+        <p class="label" id="kontakt">Kontakt</p>
+        <div class="contact-list">
+          <a class="contact" href="tel:+4915734333187">
+            <span class="avatar" aria-hidden="true">R</span>
+            <span><strong>Rahim</strong><span>0157 34333187</span></span>
+            <span class="call" aria-label="Rahim anrufen"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8.2 3.5 5.6 4.7c-.9.4-1.4 1.4-1.1 2.4 1.8 6 6.4 10.6 12.4 12.4 1 .3 2-.2 2.4-1.1l1.2-2.6-4.1-2-1.3 1.8c-2.9-1.2-5.5-3.8-6.7-6.7l1.8-1.3-2-4.1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a class="contact" href="tel:+4917620929435">
+            <span class="avatar" aria-hidden="true">M</span>
+            <span><strong>Mansour</strong><span>0176 2092 9435</span></span>
+            <span class="call" aria-label="Mansour anrufen"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8.2 3.5 5.6 4.7c-.9.4-1.4 1.4-1.1 2.4 1.8 6 6.4 10.6 12.4 12.4 1 .3 2-.2 2.4-1.1l1.2-2.6-4.1-2-1.3 1.8c-2.9-1.2-5.5-3.8-6.7-6.7l1.8-1.3-2-4.1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="links">
+        <p class="label" id="links">Links</p>
+        <div class="actions">
+          <a class="action primary" href="https://www.google.com/maps/search/?api=1&amp;query=Am%20Wasserwerk%2026A%2C%2010365%20Berlin" target="_blank" rel="noopener">Route öffnen</a>
+          <a class="action instagram" href="https://www.instagram.com/mansour._030" target="_blank" rel="noopener">Instagram</a>
+          <a class="action tiktok" href="https://www.tiktok.com/@kundus_markt" target="_blank" rel="noopener">TikTok</a>
+        </div>
+      </section>
+
+      <div class="utility">
+        <a href="kundus-markt.vcf" download>Kontakt speichern</a>
+        <button id="share" type="button">Seite teilen</button>
+      </div>
+    </article>
+    <footer>Digital profile by <b>AzarCore</b> · © 2026</footer>
+  </main>
+  <script>
+    document.getElementById('share').addEventListener('click', async () => {
+      const data = { title: 'Kundus Markt', text: 'Kundus Markt Berlin', url: location.href };
+      if (navigator.share) {
+        try { await navigator.share(data); } catch (_) {}
+      } else {
+        await navigator.clipboard.writeText(location.href);
+        const button = document.getElementById('share');
+        button.textContent = 'Link kopiert';
+        setTimeout(() => button.textContent = 'Seite teilen', 1600);
+      }
+    });
+  </script>
+</body>
+</html>
