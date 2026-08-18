@@ -3,215 +3,87 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0a7b3e">
-  <meta name="description" content="Kundus Markt – Lebensmittel und Haushaltswaren, Groß- & Einzelhandel in Berlin.">
+  <meta name="theme-color" content="#08090b">
+  <meta name="description" content="Kundus Markt Berlin – Lebensmittel und Haushaltswaren, Groß- & Einzelhandel.">
   <meta property="og:title" content="Kundus Markt Berlin">
-  <meta property="og:description" content="Lebensmittel & Haushaltswaren · Groß- & Einzelhandel">
+  <meta property="og:description" content="Lebensmittel · Haushaltswaren · Groß- & Einzelhandel">
   <meta property="og:image" content="https://azarqrcod.github.io/azarcore/kundus-markt/logo.webp">
   <title>Kundus Markt | Berlin</title>
   <style>
-    :root {
-      --red: #d51f25;
-      --green: #08783c;
-      --ink: #17191c;
-      --muted: #697178;
-      --line: #e8eaec;
-      --paper: #ffffff;
-      --wash: #f4f6f5;
-    }
-    * { box-sizing: border-box; }
-    html { min-height: 100%; background: var(--wash); }
-    body {
-      min-height: 100vh;
-      margin: 0;
-      color: var(--ink);
-      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      background:
-        radial-gradient(circle at 0 0, rgba(213,31,37,.10), transparent 34rem),
-        radial-gradient(circle at 100% 100%, rgba(8,120,60,.12), transparent 36rem),
-        var(--wash);
-    }
-    button, a { font: inherit; }
-    .page {
-      width: min(100%, 540px);
-      margin: 0 auto;
-      padding: max(20px, env(safe-area-inset-top)) 16px max(30px, env(safe-area-inset-bottom));
-    }
-    .card {
-      overflow: hidden;
-      background: rgba(255,255,255,.94);
-      border: 1px solid rgba(255,255,255,.9);
-      border-radius: 28px;
-      box-shadow: 0 22px 70px rgba(23,25,28,.13);
-      backdrop-filter: blur(14px);
-    }
-    .flag-line {
-      height: 7px;
-      background: linear-gradient(90deg, #191919 0 33.33%, var(--red) 33.33% 66.66%, var(--green) 66.66% 100%);
-    }
-    .hero { padding: 26px 22px 22px; text-align: center; }
-    .logo-box {
-      display: grid;
-      place-items: center;
-      min-height: 150px;
-      padding: 10px;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-    }
-    .logo { display: block; width: 100%; height: auto; }
-    h1 { margin: 22px 0 6px; font-size: clamp(28px, 8vw, 42px); line-height: 1; letter-spacing: -.04em; }
-    .subtitle { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
-    .address {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin: 16px 0 0;
-      color: var(--ink);
-      font-weight: 700;
-      text-decoration: none;
-    }
-    .address svg { flex: 0 0 auto; color: var(--red); }
-    .section { padding: 0 22px 22px; }
-    .label { margin: 0 0 10px; color: var(--muted); font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
-    .contact-list { display: grid; gap: 10px; }
-    .contact {
-      display: grid;
-      grid-template-columns: 48px minmax(0,1fr) auto;
-      align-items: center;
-      gap: 12px;
-      padding: 12px;
-      color: inherit;
-      text-decoration: none;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 17px;
-      transition: transform .16s ease, border-color .16s ease;
-    }
-    .contact:active { transform: scale(.985); }
-    .avatar {
-      display: grid;
-      place-items: center;
-      width: 48px;
-      height: 48px;
-      color: #fff;
-      font-size: 18px;
-      font-weight: 900;
-      border-radius: 15px;
-      background: linear-gradient(145deg, var(--red), #a41419);
-    }
-    .contact:nth-child(2) .avatar { background: linear-gradient(145deg, var(--green), #045d2e); }
-    .contact strong, .contact span { display: block; }
-    .contact strong { margin-bottom: 3px; font-size: 16px; }
-    .contact span { color: var(--muted); font-size: 14px; direction: ltr; }
-    .call {
-      display: grid;
-      place-items: center;
-      width: 40px;
-      height: 40px;
-      color: var(--green);
-      background: #eaf6ef;
-      border-radius: 13px;
-    }
-    .actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .action {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      min-height: 52px;
-      padding: 12px;
-      color: var(--ink);
-      font-weight: 800;
-      text-decoration: none;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-    }
-    .action.primary { grid-column: 1 / -1; color: #fff; background: var(--green); border-color: var(--green); }
-    .action.instagram { color: #b41b60; }
-    .action.tiktok { color: #101114; }
-    .utility { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 22px 24px; }
-    .utility a, .utility button {
-      min-height: 46px;
-      color: var(--muted);
-      font-weight: 700;
-      background: transparent;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      cursor: pointer;
-      text-decoration: none;
-      display: grid;
-      place-items: center;
-    }
-    footer { padding: 18px 12px 4px; color: #8a9197; font-size: 12px; text-align: center; }
-    footer b { color: var(--ink); }
-    @media (min-width: 520px) {
-      .page { padding-top: 34px; }
-      .hero, .section { padding-left: 28px; padding-right: 28px; }
-      .utility { padding-left: 28px; padding-right: 28px; }
-    }
+    :root{--red:#e11f27;--green:#08a052;--green-deep:#06713b;--ink:#08090b;--text:#f5f6f7;--muted:#a8adb5;--line:rgba(255,255,255,.10)}
+    *{box-sizing:border-box}html{min-height:100%;background:var(--ink)}
+    body{min-height:100vh;margin:0;overflow-x:hidden;color:var(--text);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at -12% 3%,rgba(225,31,39,.20),transparent 30rem),radial-gradient(circle at 112% 94%,rgba(8,160,82,.19),transparent 32rem),linear-gradient(145deg,#050607 0%,#0b0d10 52%,#070809 100%)}
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(to bottom,#000,transparent 75%)}
+    body::after{content:"";position:fixed;inset:-50%;pointer-events:none;opacity:.025;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");animation:grain .35s steps(2) infinite}
+    a,button{font:inherit}.page{position:relative;z-index:1;width:min(100%,580px);margin:0 auto;padding:max(22px,env(safe-area-inset-top)) 15px max(32px,env(safe-area-inset-bottom))}
+    .topline{display:flex;align-items:center;justify-content:center;gap:9px;margin:0 0 13px;color:#c7cbd1;font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase}
+    .topline::before,.topline::after{content:"";width:26px;height:1px;background:linear-gradient(90deg,transparent,var(--red))}.topline::after{background:linear-gradient(90deg,var(--green),transparent)}
+    .profile{position:relative;overflow:hidden;padding:1px;border-radius:30px;background:linear-gradient(135deg,rgba(225,31,39,.80),rgba(255,255,255,.12) 43%,rgba(8,160,82,.75));box-shadow:0 30px 90px rgba(0,0,0,.52),0 0 52px rgba(225,31,39,.06)}
+    .profile::before,.profile::after{content:"";position:absolute;width:260px;height:260px;top:-170px;right:-140px;border-radius:50%;background:rgba(225,31,39,.18);filter:blur(24px)}
+    .profile::after{width:250px;height:250px;top:auto;right:auto;bottom:-180px;left:-150px;background:rgba(8,160,82,.18);filter:blur(26px)}
+    .inner{position:relative;z-index:1;overflow:hidden;background:linear-gradient(165deg,rgba(21,23,28,.98),rgba(8,9,11,.99));border-radius:29px}
+    .flagline{height:5px;background:linear-gradient(90deg,#17191c 0 33.333%,var(--red) 33.333% 66.666%,var(--green-deep) 66.666% 100%)}
+    .hero{padding:25px 20px 22px;text-align:center}.logo-stage{position:relative;overflow:hidden;display:grid;place-items:center;min-height:182px;padding:20px 16px;background:linear-gradient(145deg,#fff,#f6f6f6);border:1px solid rgba(255,255,255,.8);border-radius:23px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.035),0 16px 38px rgba(0,0,0,.28)}
+    .logo-stage::after{content:"";position:absolute;inset:-80% -35%;transform:rotate(18deg) translateX(-45%);background:linear-gradient(90deg,transparent 42%,rgba(255,255,255,.78),transparent 58%);animation:sheen 6s ease-in-out infinite}
+    .logo{position:relative;z-index:1;display:block;width:100%;height:auto}h1{margin:24px 0 5px;font-size:clamp(30px,9vw,46px);line-height:.98;letter-spacing:-.045em}.tagline{margin:0;color:var(--muted);font-size:14px;line-height:1.65}
+    .tags{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin:16px 0 0}.tag{padding:7px 10px;color:#d8dbe0;font-size:11px;font-weight:750;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08);border-radius:999px}
+    .map{display:flex;align-items:center;gap:13px;margin-top:18px;padding:13px 14px;color:var(--text);text-align:left;text-decoration:none;background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.035));border:1px solid var(--line);border-radius:16px}
+    .map-icon{display:grid;flex:0 0 auto;place-items:center;width:42px;height:42px;color:#fff;background:linear-gradient(145deg,var(--red),#a71017);border-radius:13px;box-shadow:0 8px 20px rgba(225,31,39,.20)}.map strong,.map span{display:block}.map strong{margin-bottom:3px;font-size:14px}.map span{color:var(--muted);font-size:12px}.map-arrow{margin-left:auto;color:#737982}
+    .section{padding:0 20px 22px}.section-title{display:flex;align-items:center;gap:10px;margin:0 0 11px;color:#cfd3d8;font-size:11px;font-weight:850;letter-spacing:.15em;text-transform:uppercase}.section-title::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,var(--line),transparent)}
+    .whatsapp-list{display:grid;gap:10px}.whatsapp{position:relative;overflow:hidden;display:grid;grid-template-columns:48px minmax(0,1fr) auto;align-items:center;gap:12px;min-height:74px;padding:12px;color:#fff;text-decoration:none;background:linear-gradient(135deg,rgba(20,107,60,.32),rgba(16,19,23,.98) 65%);border:1px solid rgba(36,211,102,.23);border-radius:18px;transition:transform .16s ease,border-color .16s ease,background .16s ease}
+    .whatsapp::after{content:"";position:absolute;top:-40px;right:-28px;width:95px;height:95px;border-radius:50%;background:rgba(37,211,102,.09)}.whatsapp:active{transform:scale(.985)}
+    .wa-icon{display:grid;place-items:center;width:48px;height:48px;color:#fff;background:linear-gradient(145deg,#2de071,#13994a);border-radius:15px;box-shadow:0 9px 24px rgba(37,211,102,.22)}.wa-copy{min-width:0}.wa-copy strong,.wa-copy span{display:block}.wa-copy strong{margin-bottom:3px;font-size:16px}.wa-copy span{overflow:hidden;color:#aeb5bd;font-size:13px;text-overflow:ellipsis;white-space:nowrap;direction:ltr}.wa-open{position:relative;z-index:1;color:#25d366;font-size:11px;font-weight:850}
+    .socials{display:grid;grid-template-columns:1fr 1fr;gap:10px}.social{display:flex;align-items:center;justify-content:center;gap:9px;min-height:52px;color:#eceef1;font-size:13px;font-weight:800;text-decoration:none;background:rgba(255,255,255,.052);border:1px solid var(--line);border-radius:16px}.social.instagram svg{color:#ee427e}.social.tiktok svg{color:#fff}
+    .utilities{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:0 20px 23px}.utility{display:grid;place-items:center;min-height:44px;padding:9px;color:#9fa5ad;font-size:12px;font-weight:750;text-decoration:none;background:transparent;border:1px solid rgba(255,255,255,.08);border-radius:13px;cursor:pointer}
+    .credit{padding:15px 0 2px;text-align:center}.credit-link{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;color:#747b84;font-size:10px;font-weight:750;letter-spacing:.04em;text-decoration:none;border:1px solid rgba(255,255,255,.07);border-radius:999px}.credit-link b{color:#aeb4bc}
+    @keyframes sheen{0%,62%{transform:rotate(18deg) translateX(-55%);opacity:0}72%{opacity:.72}88%,100%{transform:rotate(18deg) translateX(55%);opacity:0}}@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(2%,-1%)}50%{transform:translate(-1%,2%)}75%{transform:translate(1%,1%)}100%{transform:translate(-2%,-1%)}}
+    @media(min-width:520px){.page{padding-top:34px}.hero,.section{padding-left:26px;padding-right:26px}.utilities{padding-left:26px;padding-right:26px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important}}
   </style>
 </head>
 <body>
   <main class="page">
-    <article class="card">
-      <div class="flag-line" aria-hidden="true"></div>
-      <header class="hero">
-        <div class="logo-box"><img class="logo" src="logo.webp" alt="Kundus Markt Logo"></div>
-        <h1>KUNDUS MARKT</h1>
-        <p class="subtitle">Lebensmittel &amp; Haushaltswaren<br>Groß- &amp; Einzelhandel</p>
-        <a class="address" href="https://www.google.com/maps/search/?api=1&amp;query=Am%20Wasserwerk%2026A%2C%2010365%20Berlin" target="_blank" rel="noopener">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg>
-          Am Wasserwerk 26A, 10365 Berlin
-        </a>
-      </header>
-
-      <section class="section" aria-labelledby="kontakt">
-        <p class="label" id="kontakt">Kontakt</p>
-        <div class="contact-list">
-          <a class="contact" href="tel:+4915734333187">
-            <span class="avatar" aria-hidden="true">R</span>
-            <span><strong>Rahim</strong><span>0157 34333187</span></span>
-            <span class="call" aria-label="Rahim anrufen"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8.2 3.5 5.6 4.7c-.9.4-1.4 1.4-1.1 2.4 1.8 6 6.4 10.6 12.4 12.4 1 .3 2-.2 2.4-1.1l1.2-2.6-4.1-2-1.3 1.8c-2.9-1.2-5.5-3.8-6.7-6.7l1.8-1.3-2-4.1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+    <p class="topline">Authentic market · Berlin</p>
+    <article class="profile">
+      <div class="inner">
+        <div class="flagline" aria-hidden="true"></div>
+        <header class="hero">
+          <div class="logo-stage"><img class="logo" src="logo.webp" alt="Kundus Markt Logo"></div>
+          <h1>KUNDUS MARKT</h1>
+          <p class="tagline">Lebensmittel &amp; Haushaltswaren<br>Groß- &amp; Einzelhandel</p>
+          <div class="tags" aria-label="Sortiment"><span class="tag">Lebensmittel</span><span class="tag">Haushaltswaren</span><span class="tag">Großhandel</span></div>
+          <a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Am%20Wasserwerk%2026A%2C%2010365%20Berlin" target="_blank" rel="noopener">
+            <span class="map-icon" aria-hidden="true"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg></span>
+            <span><strong>Am Wasserwerk 26A</strong><span>10365 Berlin · Route öffnen</span></span>
+            <svg class="map-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a class="contact" href="tel:+4917620929435">
-            <span class="avatar" aria-hidden="true">M</span>
-            <span><strong>Mansour</strong><span>0176 2092 9435</span></span>
-            <span class="call" aria-label="Mansour anrufen"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8.2 3.5 5.6 4.7c-.9.4-1.4 1.4-1.1 2.4 1.8 6 6.4 10.6 12.4 12.4 1 .3 2-.2 2.4-1.1l1.2-2.6-4.1-2-1.3 1.8c-2.9-1.2-5.5-3.8-6.7-6.7l1.8-1.3-2-4.1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
-          </a>
-        </div>
-      </section>
-
-      <section class="section" aria-labelledby="links">
-        <p class="label" id="links">Links</p>
-        <div class="actions">
-          <a class="action primary" href="https://www.google.com/maps/search/?api=1&amp;query=Am%20Wasserwerk%2026A%2C%2010365%20Berlin" target="_blank" rel="noopener">Route öffnen</a>
-          <a class="action instagram" href="https://www.instagram.com/mansour._030" target="_blank" rel="noopener">Instagram</a>
-          <a class="action tiktok" href="https://www.tiktok.com/@kundus_markt" target="_blank" rel="noopener">TikTok</a>
-        </div>
-      </section>
-
-      <div class="utility">
-        <a href="kundus-markt.vcf" download>Kontakt speichern</a>
-        <button id="share" type="button">Seite teilen</button>
+        </header>
+        <section class="section" aria-labelledby="whatsapp-title">
+          <p class="section-title" id="whatsapp-title">Direkt über WhatsApp</p>
+          <div class="whatsapp-list">
+            <a class="whatsapp" href="https://wa.me/4915734333187?text=Hallo%20Kundus%20Markt" target="_blank" rel="noopener" aria-label="Rahim über WhatsApp kontaktieren">
+              <span class="wa-icon" aria-hidden="true"><svg width="27" height="27" viewBox="0 0 32 32" fill="currentColor"><path d="M16.1 4.2A11.6 11.6 0 0 0 6.2 22l-1.6 5.8 6-1.6A11.6 11.6 0 1 0 16.1 4.2Zm0 21.1c-1.8 0-3.5-.5-5-1.3l-.4-.2-3.5.9.9-3.4-.2-.4a9.4 9.4 0 1 1 8.2 4.4Zm5.2-7c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-1.7-.8-2.8-1.5-3.9-3.4-.3-.5.3-.5.8-1.7.1-.2 0-.4 0-.6l-.9-2.2c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.6c.2.2 2.4 3.7 5.9 5.2.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3Z"/></svg></span>
+              <span class="wa-copy"><strong>Rahim</strong><span>0157 34333187</span></span><span class="wa-open">CHAT</span>
+            </a>
+            <a class="whatsapp" href="https://wa.me/4917620929435?text=Hallo%20Kundus%20Markt" target="_blank" rel="noopener" aria-label="Mansour über WhatsApp kontaktieren">
+              <span class="wa-icon" aria-hidden="true"><svg width="27" height="27" viewBox="0 0 32 32" fill="currentColor"><path d="M16.1 4.2A11.6 11.6 0 0 0 6.2 22l-1.6 5.8 6-1.6A11.6 11.6 0 1 0 16.1 4.2Zm0 21.1c-1.8 0-3.5-.5-5-1.3l-.4-.2-3.5.9.9-3.4-.2-.4a9.4 9.4 0 1 1 8.2 4.4Zm5.2-7c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-1.7-.8-2.8-1.5-3.9-3.4-.3-.5.3-.5.8-1.7.1-.2 0-.4 0-.6l-.9-2.2c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.6c.2.2 2.4 3.7 5.9 5.2.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3Z"/></svg></span>
+              <span class="wa-copy"><strong>Mansour</strong><span>0176 2092 9435</span></span><span class="wa-open">CHAT</span>
+            </a>
+          </div>
+        </section>
+        <section class="section" aria-labelledby="social-title">
+          <p class="section-title" id="social-title">Social Media</p>
+          <div class="socials">
+            <a class="social instagram" href="https://www.instagram.com/mansour._030" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Instagram</a>
+            <a class="social tiktok" href="https://www.tiktok.com/@kundus_markt" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 4v10.4a4.6 4.6 0 1 1-3.3-4.4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M15 4c.8 2.4 2.2 3.8 4.5 4.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>TikTok</a>
+          </div>
+        </section>
+        <div class="utilities"><a class="utility" href="kundus-markt.vcf" download>Kontakt speichern</a><button class="utility" id="share" type="button">Profil teilen</button></div>
       </div>
     </article>
-    <footer>Digital profile by <b>AzarCore</b> · © 2026</footer>
+    <footer class="credit"><a class="credit-link" href="https://azarqrcod.github.io/azarcore/" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10.5 13.5a4 4 0 0 0 5.7.1l2.4-2.4a4 4 0 0 0-5.7-5.7l-1.4 1.4M13.5 10.5a4 4 0 0 0-5.7-.1l-2.4 2.4a4 4 0 0 0 5.7 5.7l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Digital identity by <b>AzarCore</b></a></footer>
   </main>
   <script>
-    document.getElementById('share').addEventListener('click', async () => {
-      const data = { title: 'Kundus Markt', text: 'Kundus Markt Berlin', url: location.href };
-      if (navigator.share) {
-        try { await navigator.share(data); } catch (_) {}
-      } else {
-        await navigator.clipboard.writeText(location.href);
-        const button = document.getElementById('share');
-        button.textContent = 'Link kopiert';
-        setTimeout(() => button.textContent = 'Seite teilen', 1600);
-      }
-    });
+    document.getElementById('share').addEventListener('click',async()=>{const data={title:'Kundus Markt',text:'Kundus Markt Berlin',url:location.href};if(navigator.share){try{await navigator.share(data)}catch(_){}}else{await navigator.clipboard.writeText(location.href);const b=document.getElementById('share');b.textContent='Link kopiert';setTimeout(()=>b.textContent='Profil teilen',1600)}});
   </script>
 </body>
 </html>
