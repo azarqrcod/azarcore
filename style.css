@@ -69,3 +69,4 @@ body{background:radial-gradient(circle at 85% 7%,rgba(118,83,255,.18),transparen
 footer{border-color:rgba(132,210,255,.11);color:#71869a}
 @media(max-width:1000px){.work-grid.portfolio-showcase{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.work-grid.portfolio-showcase{grid-template-columns:1fr}.portfolio-showcase .project-image{height:360px}}
+.whatsapp-float svg{width:1.65rem;height:1.65rem;fill:currentColor}
