@@ -70,3 +70,10 @@ footer{border-color:rgba(132,210,255,.11);color:#71869a}
 @media(max-width:1000px){.work-grid.portfolio-showcase{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.work-grid.portfolio-showcase{grid-template-columns:1fr}.portfolio-showcase .project-image{height:360px}}
 .whatsapp-float svg{width:1.65rem;height:1.65rem;fill:currentColor}
+.whatsapp-float{position:fixed!important;right:1.15rem!important;bottom:max(1.15rem,env(safe-area-inset-bottom))!important;z-index:9999!important;width:3.65rem!important;height:3.65rem!important;border-radius:50%!important;background:#25d366!important;color:#fff!important;box-shadow:0 12px 36px rgba(37,211,102,.38)!important;border:2px solid rgba(255,255,255,.9);display:grid!important;place-items:center!important}
+.whatsapp-float svg{display:block;width:1.9rem;height:1.9rem;fill:#fff}
+.whatsapp-float:hover{transform:translateY(-3px) scale(1.05)}
+html[dir="rtl"] .hero-copy,html[dir="rtl"] .section-heading,html[dir="rtl"] .contact-copy{text-align:right}
+html[dir="rtl"] .kicker{flex-direction:row-reverse;justify-content:flex-end}
+html[dir="rtl"] .button,html[dir="rtl"] .contact-actions a,html[dir="rtl"] .project-meta{direction:rtl}
+html[dir="rtl"] .service-card,html[dir="rtl"] .steps{text-align:right}
