@@ -1,206 +1,150 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>AzarCore | Digital • AI • Creative Solutions</title>
-
-<meta name="description" content="AzarCore - Digital Menus, QR Systems, NFC Solutions, Branding and AI Services">
-
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#070707">
+  <meta name="description" content="AzarCore entwickelt digitale NFC-Profile, QR-Systeme, Webseiten und kreative Markenauftritte für Unternehmen in Berlin.">
+  <title>AzarCore | Digital. Smart. Unverwechselbar.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<nav class="navbar">
-
-<div class="brand">
-AzarCore
-</div>
-
-<div class="nav-buttons">
-<button onclick="setLanguage('de')">DE</button>
-<button onclick="setLanguage('en')">EN</button>
-</div>
-
-</nav>
-
-<section class="hero">
-
-<img src="images/logo.png" alt="AzarCore Logo" class="hero-logo">
-
-<h1>AzarCore</h1>
-
-<p id="heroText">
-Digitale, KI- und Kreativlösungen für Unternehmen
-</p>
-
-<div class="hero-actions">
-
-<a href="https://wa.me/491776699290" class="btn">
-WhatsApp
-</a>
-
-<a href="#services" class="btn-outline">
-Services
-</a>
-
-</div>
-
-</section>
-
-<section id="services">
-
-<h2>Services</h2>
-
-<div class="cards">
-
-<div class="card">Digital Menus</div>
-
-<div class="card">QR Systems</div>
-
-<div class="card">NFC Business Cards</div>
-
-<div class="card">NFC Smart Rings</div>
-
-<div class="card">NFC Smart Watches</div>
-
-<div class="card">AI Solutions</div>
-
-<div class="card">Branding</div>
-
-<div class="card">Logo Design</div>
-
-<div class="card">Business Cards</div>
-
-<div class="card">Signboard Design</div>
-
-<div class="card">Landing Pages</div>
-
-<div class="card">Digital Marketing</div>
-
-</div>
-
-</section>
-
-<section id="portfolio">
-
-<h2>Portfolio</h2>
-
-<div class="portfolio-grid">
-
-<div class="portfolio-item">
-<img src="images/portfolio1.jpg" alt="">
-</div>
-
-<div class="portfolio-item">
-<img src="images/portfolio2.jpg" alt="">
-</div>
-
-<div class="portfolio-item">
-<img src="images/portfolio3.jpg" alt="">
-</div>
-
-</div>
-
-</section>
-
-<section id="nfc">
-
-<h2>NFC Solutions</h2>
-
-<div class="portfolio-grid">
-
-<div class="portfolio-item">
-<img src="images/nfc-card.jpg" alt="">
-</div>
-
-<div class="portfolio-item">
-<img src="images/nfc-ring.jpg" alt="">
-</div>
-
-<div class="portfolio-item">
-<img src="images/nfc-watch.jpg" alt="">
-</div>
-
-</div>
-
-</section>
-
-<section id="ai">
-
-<h2>AI Solutions</h2>
-
-<div class="cards">
-
-<div class="card">AI Branding</div>
-
-<div class="card">AI Content Creation</div>
-
-<div class="card">AI Marketing</div>
-
-<div class="card">AI Design Support</div>
-
-<div class="card">AI Business Tools</div>
-
-<div class="card">AI Automation</div>
-
-</div>
-
-</section>
-
-<section id="miniapps">
-
-<h2>Mini Apps</h2>
-
-<div class="cards">
-
-<div class="card">QR Generator (Coming Soon)</div>
-
-<div class="card">Menu Builder (Coming Soon)</div>
-
-<div class="card">AI Content Creator (Coming Soon)</div>
-
-<div class="card">Digital Card Builder (Coming Soon)</div>
-
-</div>
-
-</section>
-
-<section id="contact">
-
-<h2>Contact</h2>
-
-<div class="contact-box">
-
-<p>WhatsApp: 01776699290</p>
-
-<p>Email: azarcore9@gmail.com</p>
-
-<p>Instagram: @eshaq_azar</p>
-
-<p>TikTok: @eshaq.azar</p>
-
-</div>
-
-</section>
-
-<footer>
-
-<p>AzarCore © 2026</p>
-
-</footer>
-
-  <a href="https://wa.me/491776699290"
-class="whatsapp-float"
-target="_blank">
-
-💬
-
-</a>
-
-<script src="script.js"></script>
-
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="AzarCore Startseite">
+      <span class="brand-mark">A</span><span>AzarCore</span>
+    </a>
+    <nav class="desktop-nav" aria-label="Hauptnavigation">
+      <a href="#services" data-i18n="navServices">Leistungen</a>
+      <a href="#work" data-i18n="navWork">Projekte</a>
+      <a href="#contact" data-i18n="navContact">Kontakt</a>
+    </nav>
+    <div class="header-actions">
+      <button class="lang" id="langToggle" type="button" aria-label="Switch to English">EN</button>
+      <a class="nav-cta" href="https://wa.me/491776699290" target="_blank" rel="noopener" data-i18n="navCta">Projekt starten</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="kicker"><span></span><span data-i18n="heroKicker">DIGITALSTUDIO · BERLIN</span></p>
+        <h1 data-i18n="heroTitle">Digitale Präsenz,<br><em>die im Gedächtnis bleibt.</em></h1>
+        <p class="hero-lead" data-i18n="heroLead">Wir verbinden Design, NFC-Technologie und smarte Weblösungen zu einem Auftritt, der professionell aussieht und messbar einfacher funktioniert.</p>
+        <div class="hero-buttons">
+          <a class="button primary" href="https://wa.me/491776699290?text=Hallo%20AzarCore%2C%20ich%20m%C3%B6chte%20mein%20Projekt%20besprechen." target="_blank" rel="noopener"><span data-i18n="heroPrimary">Kostenlos anfragen</span><b>↗</b></a>
+          <a class="button ghost" href="#work"><span data-i18n="heroSecondary">Projekte ansehen</span><b>↓</b></a>
+        </div>
+        <div class="trust-row">
+          <span data-i18n="trustOne">Direkter Kontakt</span>
+          <span data-i18n="trustTwo">Individuelles Design</span>
+          <span data-i18n="trustThree">Für iPhone & Android</span>
+        </div>
+      </div>
+      <div class="hero-visual" aria-label="AzarCore NFC Lösungen">
+        <div class="logo-stage">
+          <div class="orbit"></div>
+          <img src="images/logo.png" alt="AzarCore Logo">
+        </div>
+        <div class="float-card card-one"><small data-i18n="floatOne">KONTAKT IN SEKUNDEN</small><strong>NFC</strong><i></i></div>
+        <div class="float-card card-two"><small data-i18n="floatTwo">SMART & DIREKT</small><strong>QR</strong><i></i></div>
+      </div>
+    </section>
+
+    <section class="proof">
+      <p data-i18n="proofTitle">Ein Kontaktpunkt. Alle wichtigen Wege.</p>
+      <div><span>WhatsApp</span><i>•</i><span>Instagram</span><i>•</i><span>Google Maps</span><i>•</i><span>Website</span></div>
+    </section>
+
+    <section class="section services" id="services">
+      <div class="section-heading">
+        <p class="kicker"><span></span><span data-i18n="servicesKicker">WAS WIR MACHEN</span></p>
+        <h2 data-i18n="servicesTitle">Technik, Design und Marke.<br><em>Aus einer Hand.</em></h2>
+        <p data-i18n="servicesLead">Keine austauschbaren Vorlagen. Jede Lösung wird passend zum Unternehmen gestaltet.</p>
+      </div>
+      <div class="service-grid">
+        <article class="service-card accent">
+          <span class="service-number">01</span><div class="service-icon">⌁</div>
+          <h3 data-i18n="serviceOneTitle">NFC Business Profile</h3>
+          <p data-i18n="serviceOneText">Ein Tap öffnet Kontakte, Social Media, Standort und Angebote – ohne App.</p>
+          <small>NFC · MOBILE · CONTACT</small>
+        </article>
+        <article class="service-card">
+          <span class="service-number">02</span><div class="service-icon">⌗</div>
+          <h3 data-i18n="serviceTwoTitle">QR & Digital Menus</h3>
+          <p data-i18n="serviceTwoText">Schnelle, pflegeleichte Menüs und Informationsseiten für Gastronomie und Handel.</p>
+          <small>QR · MENU · UPDATE</small>
+        </article>
+        <article class="service-card">
+          <span class="service-number">03</span><div class="service-icon">◇</div>
+          <h3 data-i18n="serviceThreeTitle">Web & Landing Pages</h3>
+          <p data-i18n="serviceThreeText">Mobile Webseiten mit klarer Nutzerführung, starkem Design und direkter Aktion.</p>
+          <small>WEB · UX · CONVERSION</small>
+        </article>
+        <article class="service-card">
+          <span class="service-number">04</span><div class="service-icon">✦</div>
+          <h3 data-i18n="serviceFourTitle">Branding & AI Creative</h3>
+          <p data-i18n="serviceFourText">Visuelle Identität, Logos und kreative Inhalte für einen einheitlichen Markenauftritt.</p>
+          <small>BRAND · DESIGN · AI</small>
+        </article>
+      </div>
+    </section>
+
+    <section class="section work" id="work">
+      <div class="section-heading split">
+        <div><p class="kicker"><span></span><span data-i18n="workKicker">AUSGEWÄHLTE PROJEKTE</span></p><h2 data-i18n="workTitle">Nicht nur versprochen.<br><em>Bereits umgesetzt.</em></h2></div>
+        <p data-i18n="workLead">Digitale Profile, die auf dem Smartphone schnell laden und Kunden direkt zur gewünschten Aktion führen.</p>
+      </div>
+      <div class="work-grid">
+        <a class="project project-featured" href="hair-beetle/" target="_blank">
+          <div class="project-image hair-project"><img src="hair-beetle/hair-beetle-logo.jpeg" alt="Hair Beetle NFC Profil"><span data-i18n="openProject">LIVE ANSEHEN ↗</span></div>
+          <div class="project-meta"><div><small>NFC PROFILE · BEAUTY</small><h3>Hair Beetle</h3></div><b>01</b></div>
+        </a>
+        <a class="project" href="kundus-markt/" target="_blank">
+          <div class="project-image kundus-project"><img src="images/portfolio1.jpg" alt="Kundus Markt digitales Profil"><span data-i18n="openProject">LIVE ANSEHEN ↗</span></div>
+          <div class="project-meta"><div><small>QR PROFILE · RETAIL</small><h3>Kundus Markt</h3></div><b>02</b></div>
+        </a>
+        <article class="project product-project">
+          <div class="project-image"><img src="images/nfc-card.jpg" alt="AzarCore NFC Business Card"></div>
+          <div class="project-meta"><div><small>NFC PRODUCT · CONTACT</small><h3 data-i18n="nfcCardTitle">Smart Business Card</h3></div><b>03</b></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section process">
+      <div class="section-heading centered">
+        <p class="kicker"><span></span><span data-i18n="processKicker">SO FUNKTIONIERT ES</span></p>
+        <h2 data-i18n="processTitle">Von der Idee zum fertigen Produkt.</h2>
+      </div>
+      <ol class="steps">
+        <li><b>01</b><h3 data-i18n="stepOneTitle">Briefing</h3><p data-i18n="stepOneText">Sie senden Logo, Kontaktdaten und gewünschte Inhalte.</p></li>
+        <li><b>02</b><h3 data-i18n="stepTwoTitle">Design</h3><p data-i18n="stepTwoText">Wir entwickeln eine individuelle, mobile Ansicht Ihrer Marke.</p></li>
+        <li><b>03</b><h3 data-i18n="stepThreeTitle">Aktivierung</h3><p data-i18n="stepThreeText">Nach Ihrer Freigabe wird der Link auf NFC oder QR aktiviert.</p></li>
+      </ol>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact-copy">
+        <p class="kicker"><span></span><span data-i18n="contactKicker">IHR NÄCHSTES PROJEKT</span></p>
+        <h2 data-i18n="contactTitle">Bereit für einen Auftritt,<br><em>der professionell wirkt?</em></h2>
+      </div>
+      <div class="contact-actions">
+        <a href="https://wa.me/491776699290?text=Hallo%20AzarCore%2C%20ich%20m%C3%B6chte%20mein%20Projekt%20besprechen." target="_blank" rel="noopener"><span><small>WHATSAPP</small><strong>Projekt besprechen</strong></span><b>↗</b></a>
+        <a href="mailto:azarcore9@gmail.com"><span><small>E-MAIL</small><strong>azarcore9@gmail.com</strong></span><b>↗</b></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="#top"><span class="brand-mark">A</span><span>AzarCore</span></a>
+    <p data-i18n="footerText">Digital · AI · Creative Solutions</p>
+    <small>© 2026 AzarCore · Berlin</small>
+  </footer>
+  <a class="whatsapp-float" href="https://wa.me/491776699290" target="_blank" rel="noopener" aria-label="AzarCore über WhatsApp kontaktieren"><span>↗</span></a>
+  <script src="script.js"></script>
 </body>
 </html>
