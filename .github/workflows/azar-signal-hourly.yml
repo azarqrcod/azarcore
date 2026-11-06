@@ -1,0 +1,41 @@
+name: AZAR SIGNAL - Hourly Verified Market Scan
+
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: azar-signal-hourly-ledger
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Checkout website and previous ledger
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - name: Python runtime
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Scan Binance USD-M Futures and update decision ledger
+        run: python scripts/azar_scan.py
+      - name: Commit ONLY public AZAR signal data
+        shell: bash
+        run: |
+          git config user.name "azar-signal-data-bot"
+          git config user.email "azar-signal-bot@users.noreply.github.com"
+          touch signals/ledger.ndjson
+          git add signals/state.json signals/ledger.ndjson
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(azar-signal): hourly verified market scan [skip ci]"
+            git push
+          fi
