@@ -199,14 +199,14 @@ def check(symbol, exch, now):
             t1 = next((x for x in levels if abs(x-entry) >= 1.1*distance), None)
             t2 = next((x for x in levels if abs(x-entry) >= 2.8*distance), None)
             if t1 and t2:
-                per_coin_risk = distance + entry*(2*FEE_RATE+SLIPPAGE_RATE)
+                per_coin_risk = distance + 0.04*a + entry*(2*FEE_RATE+SLIPPAGE_RATE)
                 minqty, step, minnotional = symbol_filters(exch, symbol)
                 qty = filt_qty(RISK / per_coin_risk,step)
                 for leverage in (2,3):
                     margin = qty*entry/leverage
                     if qty >= minqty and qty*entry >= minnotional and margin <= CAPITAL*.85:
                         net_loss = qty*per_coin_risk
-                        net_gain = qty*(abs(t2-entry)-entry*(2*FEE_RATE+SLIPPAGE_RATE))
+                        net_gain = qty*(abs(t2-entry)-0.04*a-entry*(2*FEE_RATE+SLIPPAGE_RATE))
                         rr = net_gain/net_loss if net_loss > 0 else 0
                         if rr >= 2.5 and net_loss <= RISK:
                             issued = iso()
@@ -267,7 +267,7 @@ def outcome_update(state, by_symbol, now):
         issued=to_dt(sig["issued_at"]).timestamp()*1000
         future=[b for b in h if b["t"] > issued]
         if sig.get("status")=="NOT TRIGGERED":
-            touch=next((b for b in future if b["l"] <= sig["entry_high"] and b["h"] >= sig["entry_low"]),None)
+            touch=next((b for b in future if b["t"] <= to_dt(sig["expires_at"]).timestamp()*1000 and b["l"] <= sig["entry_high"] and b["h"] >= sig["entry_low"]),None)
             if touch:
                 sig["status"]="TRIGGERED"
                 sig["triggered_at"]=iso(dt.datetime.fromtimestamp(touch["t"]/1000,UTC))
@@ -289,6 +289,8 @@ def outcome_update(state, by_symbol, now):
             tp1_hit=high>=sig["tp1"] if side=="LONG" else low<=sig["tp1"]
             event = "AMBIGUOUS" if (stop_hit and (tp1_hit or tp2_hit)) else (
                 "SL" if stop_hit else "TP2" if tp2_hit else "TP1" if tp1_hit and sig["status"]!="TP1" else None)
+            if b["t"] == start and (stop_hit or tp1_hit or tp2_hit):
+                event = "AMBIGUOUS"  # Intrabar sequence unknown on entry candle
             if not event: continue
             if event=="TP1":
                 sig["status"]="TP1"
@@ -327,6 +329,29 @@ def main():
             if p:proposals.append(p)
         except Exception as exc:
             errors.append(symbol+": "+type(exc).__name__+" "+str(exc)[:130])
+    # Correlation is a separate market-wide risk gate; single-asset analysis cannot waive it.
+    if len(bars)==2:
+        btc=[x["c"] for x in bars["BTCUSDT"]][-50:]
+        eth=[x["c"] for x in bars["ETHUSDT"]][-50:]
+        br=[math.log(btc[i]/btc[i-1]) for i in range(1,len(btc))]
+        er=[math.log(eth[i]/eth[i-1]) for i in range(1,len(eth))]
+        bx=sum(br)/len(br)
+        ex=sum(er)/len(er)
+        den=math.sqrt(sum((x-bx)**2 for x in br)*sum((x-ex)**2 for x in er))
+        corr=sum((x-bx)*(y-ex) for x,y in zip(br,er))/den if den else 0.0
+        agree=(states["BTCUSDT"]["trend_1h"]==states["ETHUSDT"]["trend_1h"] and
+               states["BTCUSDT"]["trend_4h"]==states["ETHUSDT"]["trend_4h"])
+        cross_ok=corr>=0.5 and agree
+        for d in decisions:
+            d["gates"]["btc_eth_correlation"]=cross_ok
+            d["correlation_1h"]=round(corr,3)
+            if not cross_ok and d["decision"]=="SIGNAL":
+                d["decision"]="REJECTED"
+                d["reason"]="Correlation/divergence risk gate failed"
+        for market in states.values():
+            market["btc_eth_correlation"]=round(corr,3)
+        if not cross_ok:
+            proposals=[]
     state["scanned_at"]=iso()
     state["data_status"]="ok" if not errors and len(states)==2 else "unavailable"
     if states:state["markets"]=states
@@ -343,7 +368,8 @@ def main():
             if s["id"] not in known:state["signals"].append(s)
         outcome_update(state,bars,now)
         # Public latest decisions; full chained ledger in ledger.ndjson
-        state["decisions"]=(state["decisions"]+decisions)[-MAX_RECORDS:]
+        known_decisions={x["id"] for x in state["decisions"]}
+        state["decisions"]=(state["decisions"]+[d for d in decisions if d["id"] not in known_decisions])[-MAX_RECORDS:]
         append_ledger(decisions)
         append_ledger([{"id":"SIG-"+x["id"],"type":"SIGNAL","at":x["issued_at"],
                         "symbol":x["symbol"],"entry":x["entry"],"stop":x["stop"],
