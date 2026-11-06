@@ -1,6 +1,6 @@
 {
   "schema": "azar-signal-v1",
-  "scanned_at": "2026-11-06T12:05:59Z",
+  "scanned_at": "2026-11-06T12:07:11Z",
   "data_status": "unavailable",
   "latest_decision": "NO VERIFIED DATA",
   "reason": "داده‌های تازه یا کامل بازار دریافت نشد؛ هیچ سیگنال معتبری صادر نمی‌شود.",
@@ -15,6 +15,6 @@
     "No automated orders."
   ],
   "errors": [
-    "exchange information unavailable: HTTPError"
+    "exchange information unavailable: HTTPError HTTP=451 HTTP Error 451: "
   ]
 }
