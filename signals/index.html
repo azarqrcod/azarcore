@@ -35,7 +35,7 @@ var el=function(id){return document.getElementById(id);};
 function value(n){return n==null?'—':String(n)}
 function safe(s){return value(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function health(ok,s){var e=el('health');e.querySelector('span:nth-child(2)').textContent=s;e.querySelector('.light').className='light '+(ok?'ok':'err')}
-function market(symbol,id,valid){var m=(state.markets||{})[symbol]||{},root=el(id);function set(k,t){root.querySelector('[data-key="'+k+'"]').textContent=t}set('state',!valid?'داده قدیمی/نامعتبر':m.quality==='verified'?'پایش ثبت‌شده':'بدون تأیید');set('price',valid?'$ '+fmt(m.price,2):'—');set('trend',valid?(m.trend_1h||'—')+' / '+(m.trend_4h||'—'):'—');set('rsi',valid?fmt(m.rsi_1h,1):'—');set('ema',valid?fmt(m.ema20_1h,1)+' / '+fmt(m.ema50_1h,1):'—');set('volume',valid&&m.volume_ratio!=null?fmt(m.volume_ratio,2)+'×':'—');var svg=root.querySelector('[data-key="chart"]'),v=Array.isArray(m.closes)?m.closes.filter(function(n){return typeof n==='number'&&isFinite(n)}):[];if(v.length<2){svg.innerHTML='<path d="M0 38 L400 38" stroke="#39404b" fill="none" stroke-dasharray="4 6"/>';return}var min=Math.min.apply(null,v),max=Math.max.apply(null,v),range=max-min||1;var pts=v.map(function(n,i){return (5+(i/(v.length-1))*390).toFixed(1)+','+(70-(n-min)/range*64).toFixed(1)}).join(' ');svg.innerHTML='<polyline points="'+pts+'" fill="none" stroke="#d5b16c" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>';}
+function market(symbol,id,valid){var m=(state.markets||{})[symbol]||{},root=el(id);function set(k,t){root.querySelector('[data-key="'+k+'"]').textContent=t}set('state',!valid?'داده قدیمی/نامعتبر':state.data_status==='browser_quotes'?'داده زنده، فقط نمایش':m.quality==='verified'?'پایش ثبت‌شده':'بدون تأیید');set('price',valid?'$ '+fmt(m.price,2):'—');set('trend',valid?(m.trend_1h||'—')+' / '+(m.trend_4h||'—'):'—');set('rsi',valid?fmt(m.rsi_1h,1):'—');set('ema',valid?fmt(m.ema20_1h,1)+' / '+fmt(m.ema50_1h,1):'—');set('volume',valid&&m.volume_ratio!=null?fmt(m.volume_ratio,2)+'×':'—');var svg=root.querySelector('[data-key="chart"]'),v=Array.isArray(m.closes)?m.closes.filter(function(n){return typeof n==='number'&&isFinite(n)}):[];if(v.length<2){svg.innerHTML='<path d="M0 38 L400 38" stroke="#39404b" fill="none" stroke-dasharray="4 6"/>';return}var min=Math.min.apply(null,v),max=Math.max.apply(null,v),range=max-min||1;var pts=v.map(function(n,i){return (5+(i/(v.length-1))*390).toFixed(1)+','+(70-(n-min)/range*64).toFixed(1)}).join(' ');svg.innerHTML='<polyline points="'+pts+'" fill="none" stroke="#d5b16c" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>';}
 function renderTable(){
 var rows=Array.isArray(state[tab])?state[tab].slice().reverse().slice(0,120):[];if(!rows.length){el('records').innerHTML='<div class="empty">هنوز رکورد قابل تأییدی در این بخش وجود ندارد.<br><span class="subtle">اطلاعات فرضی نمایش داده نمی‌شود.</span></div>';return}
 var headers,fields;if(tab==='signals'){headers=['شناسه','زمان','دارایی','جهت','ورود مشروط','SL','TP1','TP2','نسبت خالص','وضعیت'];fields=['id','issued_at','symbol','side','entry','stop','tp1','tp2','rr_net','status']}else if(tab==='outcomes'){headers=['شناسه سیگنال','زمان','رویداد','قیمت','سود/زیان تخمینی','توضیح'];fields=['signal_id','observed_at','event','price','pnl_usd','reason']}else{headers=['زمان','دارایی','تصمیم','امتیاز','دلیل'];fields=['at','symbol','decision','score','reason']}
@@ -43,13 +43,34 @@ var body='<table class="table"><thead><tr>'+headers.map(function(h){return '<th>
 rows.forEach(function(r){body+='<tr>'+fields.map(function(f){var v=r[f];if(f==='issued_at'||f==='observed_at'||f==='at')v=date(v);else if(typeof v==='number')v=fmt(v,3);return '<td'+(f==='reason'?' class="why"':'')+'>'+safe(v)+'</td>'}).join('')+'</tr>'});el('records').innerHTML=body+'</tbody></table>'}
 function render(){
 var at=state.scanned_at,age=at?Date.now()-new Date(at).getTime():Infinity;
-var valid=!!at&&age>=-300000&&age<=2*60*60*1000&&state.data_status==='ok';
-health(valid,valid?'داده پایش موجود':'داده قدیمی یا ناموجود');
+var valid=!!at&&age>=-300000&&age<=2*60*60*1000&&(state.data_status==='ok'||state.data_status==='browser_quotes');
+health(valid,valid?(state.data_status==='browser_quotes'?'قیمت تازه، بدون سیگنال':'پایش تأییدشده'):'داده قدیمی یا ناموجود');
 el('verdict').textContent=!valid?'NO VERIFIED DATA':state.latest_decision||'NO TRADE';el('reason').textContent=!valid?'این صفحه در نبود داده تازه هیچ سیگنال معتبری نمایش نمی‌دهد.':(state.reason||'در این نوبت موقعیت تأییدشده‌ای ثبت نشده است.');
 el('updated').textContent='آخرین بررسی: '+date(at);el('ago').textContent=date(at);el('total').textContent=fmt((state.signals||[]).length,0);el('tp2').textContent=fmt((state.outcomes||[]).filter(function(x){return x.event==='TP2'}).length,0);el('sl').textContent=fmt((state.outcomes||[]).filter(function(x){return x.event==='SL'}).length,0);
 market('BTCUSDT','btc',valid);market('ETHUSDT','eth',valid);renderTable();
 }
-async function load(){try{var url='https://raw.githubusercontent.com/azarqrcod/azarcore/main/signals/state.json?_='+Date.now();var res;try{res=await fetch(url,{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status)}catch(e){res=await fetch('./state.json?_='+Date.now(),{cache:'no-store'});if(!res.ok)throw e};var data=await res.json();if(!data||typeof data!=='object')throw Error('bad data');state=data;render()}catch(err){state={markets:{},signals:[],outcomes:[],decisions:[],data_status:'unavailable'};render();el('reason').textContent='دریافت داده انجام نشد. هیچ تصمیمی بر اساس داده نامعتبر اعلام نمی‌شود.';}}
+
+async function browserQuotes(){
+  // Browser-only live quotes are NOT a verified trade signal and NEVER added to the decision ledger.
+  var base='https://fapi.binance.com',fresh={},stamp=Date.now();
+  function calcEMA(arr,n){var v=arr[0],k=2/(n+1);for(var i=1;i<arr.length;i++)v=v+(arr[i]-v)*k;return v;}
+  function calcRSI(arr){if(arr.length<16)return NaN;var g=0,l=0;for(var i=1;i<=14;i++){var d=arr[i]-arr[i-1];g+=Math.max(0,d);l+=Math.max(0,-d)}g/=14;l/=14;for(var j=15;j<arr.length;j++){var dd=arr[j]-arr[j-1];g=(g*13+Math.max(0,dd))/14;l=(l*13+Math.max(0,-dd))/14;}return l===0?100:100-100/(1+g/l)}
+  async function get(path){var r=await fetch(base+path,{cache:'no-store'});if(!r.ok)throw Error('Binance '+r.status);return r.json()}
+  for(var sym of ['BTCUSDT','ETHUSDT']){
+    var v=await Promise.all([get('/fapi/v1/klines?symbol='+sym+'&interval=1h&limit=100'),get('/fapi/v1/klines?symbol='+sym+'&interval=4h&limit=100'),get('/fapi/v1/ticker/bookTicker?symbol='+sym)]);
+    var h=v[0].filter(function(x){return +x[6]<stamp}),f=v[1].filter(function(x){return +x[6]<stamp}),book=v[2];
+    if(h.length<55||f.length<55||stamp-Number(h[h.length-1][6])>7200000||stamp-Number(f[f.length-1][6])>18000000||stamp-Number(book.time)>180000)throw Error('market data stale');
+    var ch=h.map(function(x){return +x[4]}),cf=f.map(function(x){return +x[4]}),e20=calcEMA(ch,20),e50=calcEMA(ch,50),f20=calcEMA(cf,20),f50=calcEMA(cf,50);
+    function trend(c,a,b){return c>a&&a>b?'صعودی':c<a&&a<b?'نزولی':'نامشخص'}
+    var avg=h.slice(-21,-1).reduce(function(a,x){return a+Number(x[5])},0)/20;
+    fresh[sym]={quality:'browser_quotes',price:(+book.bidPrice+ +book.askPrice)/2,trend_1h:trend(ch[ch.length-1],e20,e50),trend_4h:trend(cf[cf.length-1],f20,f50),ema20_1h:e20,ema50_1h:e50,rsi_1h:calcRSI(ch),volume_ratio:+h[h.length-1][5]/avg,closes:ch.slice(-40)};
+  }
+  state.markets=fresh;state.scanned_at=new Date().toISOString();state.data_status='browser_quotes';state.latest_decision='DATA ONLY';
+  state.reason='قیمت و اندیکاتورها مستقیماً از بایننس در مرورگر گرفته شده‌اند. تحلیل کامل و سیگنال تأییدشده هنوز فعال نیست.';
+  render();
+}
+
+async function load(){try{var url='https://raw.githubusercontent.com/azarqrcod/azarcore/main/signals/state.json?_='+Date.now();var res;try{res=await fetch(url,{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status)}catch(e){res=await fetch('./state.json?_='+Date.now(),{cache:'no-store'});if(!res.ok)throw e};var data=await res.json();if(!data||typeof data!=='object')throw Error('bad data');state=data;render();if(data.data_status!=='ok'){try{await browserQuotes()}catch(e){/* Fail closed */}}}catch(err){state={markets:{},signals:[],outcomes:[],decisions:[],data_status:'unavailable'};render();try{await browserQuotes()}catch(e){el('reason').textContent='دریافت داده تازه انجام نشد. هیچ سیگنال یا قیمت نامعتبری نمایش داده نمی‌شود.'}}}
 Array.prototype.forEach.call(document.querySelectorAll('.tab'),function(b){b.addEventListener('click',function(){tab=b.dataset.tab;Array.prototype.forEach.call(document.querySelectorAll('.tab'),function(x){x.classList.toggle('active',x===b)});renderTable()})});
 load();setInterval(load,60000);
 })();
