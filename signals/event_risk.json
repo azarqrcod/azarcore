@@ -1,0 +1,7 @@
+{
+  "schema": "azar-signal-event-risk-v1",
+  "status": "UNVERIFIED",
+  "reviewed_at": null,
+  "valid_until": null,
+  "notes": "Fail closed: no signals until economic-news/event risk has an independently verified and fresh clearance. Do not set VERIFIED_CLEAR without factual support."
+}
