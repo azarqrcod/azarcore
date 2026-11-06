@@ -318,7 +318,7 @@ def main():
         exch=api("/fapi/v1/exchangeInfo")
     except Exception as exc:
         exch=None
-        errors.append("exchange information unavailable: "+type(exc).__name__)
+        errors.append("exchange information unavailable: "+type(exc).__name__+" HTTP="+str(getattr(exc,"code","unknown"))+" "+str(exc)[:100])
     for symbol in SYMBOLS:
         if exch is None:break
         try:
