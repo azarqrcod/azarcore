@@ -1,9 +1,9 @@
 {
   "schema": "azar-signal-v1",
-  "scanned_at": null,
-  "data_status": "awaiting_first_scan",
-  "latest_decision": "NO DATA",
-  "reason": "پایش خودکار هنوز اجرا نشده است.",
+  "scanned_at": "2026-11-06T12:04:25Z",
+  "data_status": "unavailable",
+  "latest_decision": "NO VERIFIED DATA",
+  "reason": "داده‌های تازه یا کامل بازار دریافت نشد؛ هیچ سیگنال معتبری صادر نمی‌شود.",
   "markets": {},
   "signals": [],
   "outcomes": [],
@@ -13,5 +13,8 @@
   "notices": [
     "Signals are unverified until hard gates pass.",
     "No automated orders."
+  ],
+  "errors": [
+    "exchange information unavailable: HTTPError"
   ]
 }
