@@ -1,0 +1,17 @@
+{
+  "schema": "azar-signal-v1",
+  "scanned_at": null,
+  "data_status": "awaiting_first_scan",
+  "latest_decision": "NO DATA",
+  "reason": "پایش خودکار هنوز اجرا نشده است.",
+  "markets": {},
+  "signals": [],
+  "outcomes": [],
+  "decisions": [],
+  "ruleset": "1.0",
+  "source": "Binance USD-M Futures public API",
+  "notices": [
+    "Signals are unverified until hard gates pass.",
+    "No automated orders."
+  ]
+}
