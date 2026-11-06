@@ -1,6 +1,10 @@
 name: AZAR SIGNAL - Hourly Verified Market Scan
 
 on:
+  push:
+    paths:
+      - 'scripts/azar_scan.py'
+      - '.github/workflows/azar-signal-hourly.yml'
   schedule:
     - cron: '17 * * * *'
   workflow_dispatch:
@@ -26,6 +30,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Verify Python syntax
+        run: python -m py_compile scripts/azar_scan.py
       - name: Scan Binance USD-M Futures and update decision ledger
         run: python scripts/azar_scan.py
       - name: Commit ONLY public AZAR signal data
