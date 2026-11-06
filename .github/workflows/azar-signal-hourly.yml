@@ -1,12 +1,7 @@
 name: AZAR SIGNAL - Hourly Verified Market Scan
 
+# Disabled recurring scan at user's request; manual runs only.
 on:
-  push:
-    paths:
-      - 'scripts/azar_scan.py'
-      - '.github/workflows/azar-signal-hourly.yml'
-  schedule:
-    - cron: '17 * * * *'
   workflow_dispatch:
 
 permissions:
